@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculadora de Divisão</title>
+  </head>
+
+  <body>
+    <h1>Calculadora de Divisão</h1>
+    <form>
+      <label>Número 1</label><br />
+      <input type="number" id="n1" /><br />
+      <label>Número 2</label><br />
+      <input type="number" id="n2" />
+    </form>
+    <button onclick="executar()">Executar</button>
+  </body>
+
+  <script type="text/javascript">
+    const executar = () => {
+      const n1 = document.getElementById("n1").value;
+      const n2 = document.getElementById("n2").value;
+
+      if (!n1 || !n2) {
+        return alert("Preencha os campos!");
+      }
+
+      if (n1.includes("." || ",") || n2.includes("." || ",")) {
+        return alert("Insira números inteiros!");
+      }
+
+      const numeros = [eval(n1), eval(n2)];
+
+      numeros.forEach((n) => {
+        if (n <= 0) {
+          return alert("Insira números inteiros positivos!");
+        }
+      });
+
+      const divisao = numeros[0] / numeros[1];
+
+      alert(`Resultado da divisão ${n1}/${n2}: ${divisao.toFixed(2)}`);
+    };
+  </script>
+</html>

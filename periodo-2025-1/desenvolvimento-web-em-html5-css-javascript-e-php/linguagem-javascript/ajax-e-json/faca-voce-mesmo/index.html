@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Consumo de JSON local</title>
+  </head>
+  <body>
+    <button onclick="loadRemoteJson()">Carregar Json Local</button>
+  </body>
+  <script type="text/javascript">
+    const loadRemoteJson = () => {
+      fetch("dados.json", { method: "get" })
+        .then((response) => {
+          response.json().then((data) => {
+            console.log("Dados do Json local: " + JSON.stringify(data));
+          });
+        })
+        .catch((err) => {
+          console.error("O seguinte erro ocorreu durante a requisição: " + err);
+        });
+    };
+  </script>
+</html>

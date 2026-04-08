@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+  <head>
+    <title>AJAX na prática</title>
+  </head>
+  <body>
+    <h1>Carregando Imagens Aleatórias</h1>
+    <p>Clique no botão para carregar imagens aleatórias</p>
+    <button onclick="carregarImagemAleatoria()">Clique Aqui</button>
+    <br>
+  </body>
+  <script type="text/javascript">
+    const carregarImagemAleatoria = async () => {
+      try {
+        const response = await fetch("https://dog.ceo/api/breeds/image/random", { method: "get" });
+        const responseJson = await response.json();
+        
+        const image = document.getElementById("imagem-aleatoria");
+        
+        if (!image) {
+          const newImageTag = document.createElement("img");
+          newImageTag.id = "imagem-aleatoria";
+          newImageTag.alt = "Imagem gerada aleatoriamente";
+          newImageTag.src = responseJson.message;
+          document.body.appendChild(newImageTag);
+        } else {
+          image.src = responseJson.message;
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+  </script>
+</html>
